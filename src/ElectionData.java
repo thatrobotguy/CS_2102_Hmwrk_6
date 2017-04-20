@@ -112,12 +112,14 @@ class ElectionData implements CandidateSet{ // extends Exception{
 		}
 		return null;
 	}
+	
+	// This funciton helps the findWinnerMostFirstVotes() function counting first votes.
 	private int countFirstVotes(String name)
 	{
-		int result = 0;
-		for (String runTotal: this.votes)
+		int result = 0, i = 0;
+		for (i = 0; i < this.votes.size(); i = i + 3)// (String runTotal: this.votes)
 		{
-			if (runTotal.equals(name))
+			if (this.ballot.get(i).equals(name))
 			{
 				result++;
 			}
