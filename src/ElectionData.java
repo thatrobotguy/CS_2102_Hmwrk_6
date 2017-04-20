@@ -45,8 +45,8 @@ class ElectionData implements CandidateSet{ // extends Exception{
 		}
 		return numvotes;
 	}
-	*/
-	
+	 */
+
 	public void addCandidate(String vote1, String vote2, String vote3) 
 			throws UnknownCandidateException, DuplicateVotesException,
 			DuplicateVotesException
@@ -105,19 +105,41 @@ class ElectionData implements CandidateSet{ // extends Exception{
 	public String findWinnerMostFirstVotes() {
 		// TODO Auto-generated method stub
 		int totalCandidates = this.ballot.size(), i = 0;
-		
-		for (i = 0; ; i++)
+		LinkedList<Integer> counterList = new LinkedList<Integer>();
+		// This list holds an integer for each candidate.
+		// Increment the respective counter each time they get a vote.
+
+		// Fill the list with integers of 0 in for each candidate.
+		for (i = 0; i < totalCandidates; i++)
 		{
-			
+			counterList.add(0); // Each candidate gets 0 votes.
 		}
-		return null;
+		
+		// reset counter
+		i = 0;
+		
+		// This fills with a dummy variable so that this function compiles.
+		String winner = this.ballot.get(0);
+		
+		int totalVotes = 0;
+
+		for (i = 0; i < totalCandidates; i++)
+		{
+			// counterList.set(i) = countFirstVotes(this.ballot.get(i));
+			totalVotes = countFirstVotes(this.ballot.get(i)); // Get the total first votes for that candidate.
+			counterList.get(i) = totalVotes;
+		}
+		return winner;
 	}
-	
-	// This funciton helps the findWinnerMostFirstVotes() function counting first votes.
-	private int countFirstVotes(String name)
+
+	// This function helps the findWinnerMostFirstVotes() function counting first votes.
+	private int countFirstVotes(String name) // , int ballotnum) // ballotnum is the number that associates the candidate 
+	// in the list of candidates
 	{
 		int result = 0, i = 0;
-		for (i = 0; i < this.votes.size(); i = i + 3)// (String runTotal: this.votes)
+		for (i = 0; i < this.votes.size(); i = i + 3)
+			// (String runTotal: this.votes)
+			// (i = ballotnum; i < this.votes.size(); i = i + 3)
 		{
 			if (this.ballot.get(i).equals(name))
 			{
