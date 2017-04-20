@@ -1,5 +1,5 @@
 
 public interface CandidateSet {
 	
-	public void addCandidate(String vote) throws CandidateNotFoundException;
+	public void addCandidate(String vote) throws UnknownCandidateException;
 }

@@ -46,15 +46,46 @@ class ElectionData implements CandidateSet{ // extends Exception{
 	}
 
 	public void addCandidate(String vote1, String vote2, String vote3) 
-			throws CandidateNotFoundException
+			throws UnknownCandidateException, DuplicateVotesException,
+			DuplicateVotesException
 	{
-		for (Customer cust: customers)
+		// This code below is if there weren't any errors
+		//		if (vote1 != vote2 && vote1 != vote3 && vote2 != vote3)
+		//		{
+		//		votes.add(vote);
+		//		}
+		if (!candidateExist(vote1)) // This is the error if the votes don't match any candidates.
 		{
-			if (cust.nameMatches(name))
-				return cust;
+			throw new UnknownCandidateException(vote1);
 		}
-		votes.add(vote);
+		else if (!candidateExist(vote2))
+		{
+			throw new UnknownCandidateException(vote2);
+		}
+		else if (!candidateExist(vote3))
+		{
+			throw new UnknownCandidateException(vote3);
+		}
+		else if ()
+		{
+			
+		}
+	}
 
-		throw new (CandidateNotFoundException vote);
+	public void processVote(String string, String string2, String string3) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private boolean candidateExist(String name)
+	{
+		for (String cand1 : this.ballot)
+		{
+			if (cand1.equals(name))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }
