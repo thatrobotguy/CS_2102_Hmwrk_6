@@ -54,6 +54,13 @@ class ElectionData implements CandidateSet{ // extends Exception{
 		//		{
 		//		votes.add(vote);
 		//		}
+
+	}
+
+	public void processVote(String vote1, String vote2, String vote3) 
+			throws UnknownCandidateException, DuplicateVotesException,
+			DuplicateVotesException
+	{
 		if (!candidateExist(vote1)) // This is the error if the votes don't match any candidates.
 		{
 			throw new UnknownCandidateException(vote1);
@@ -66,14 +73,18 @@ class ElectionData implements CandidateSet{ // extends Exception{
 		{
 			throw new UnknownCandidateException(vote3);
 		}
-		else if ()
+		else if (vote1.equals(vote2))
 		{
-			
+			throw new DuplicateVotesException(vote2);
 		}
-	}
-
-	public void processVote(String string, String string2, String string3) {
-		// TODO Auto-generated method stub
+		else if (vote1.equals(vote3))
+		{
+			throw new DuplicateVotesException(vote3);
+		}
+		else if (vote2.equals(vote3))
+		{
+			throw new DuplicateVotesException(vote3);
+		}
 
 	}
 
