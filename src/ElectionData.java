@@ -121,13 +121,16 @@ class ElectionData implements CandidateSet{ // extends Exception{
 		// This fills with a dummy variable so that this function compiles.
 		String winner = this.ballot.get(0);
 		
+		// Filler variable for total first votes for each candidate.
 		int totalVotes = 0;
 
 		for (i = 0; i < totalCandidates; i++)
 		{
 			// counterList.set(i) = countFirstVotes(this.ballot.get(i));
 			totalVotes = countFirstVotes(this.ballot.get(i)); // Get the total first votes for that candidate.
-			counterList.get(i) = totalVotes;
+			
+			// Mary do you see what I am trying to do? #######################################
+			counterList.get(i) = totalVotes; // This is supposed to set the element in the list to totalVotes.
 		}
 		return winner;
 	}
