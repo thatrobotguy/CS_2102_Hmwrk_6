@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Scanner;
 
-class ElectionData implements CandidateSet{ // extends Exception{
+class ElectionData { // extends Exception{implements CandidateSet
 	private LinkedList<String> ballot = new LinkedList<String>(); // A list of candidates
 	private LinkedList<String> votes = new LinkedList<String>();  // The votes people cast
 	// A list of candidates from the voters
@@ -22,18 +22,18 @@ class ElectionData implements CandidateSet{ // extends Exception{
 
 	public void screen()
 	{
-		try
-		{
+	//	try
+	//	{
 			this.printBallot();
 			System.out.println("Who do you want to vote for?");
 			String candidate = keyboard.next();
-			addCandidate(candidate1, candidate2, candidate3);
+			//addCandidate(candidate1, candidate2, candidate3);
 			System.out.println("You voted for " + candidate);
-		}
-		catch (CandidateNotFoundException e)
-		{
+		//}
+		//catch (CandidateExistsException	 e)
+		//{
 
-		}
+		//}
 	}
 
 	/*
@@ -47,16 +47,19 @@ class ElectionData implements CandidateSet{ // extends Exception{
 	}
 	*/
 	
-	public void addCandidate(String vote1, String vote2, String vote3) 
-			throws UnknownCandidateException, DuplicateVotesException,
-			DuplicateVotesException
+	public void addCandidate(String vote1) 
+			throws CandidateExistsException		
 	{
 		// This code below is if there weren't any errors
 		//		if (vote1 != vote2 && vote1 != vote3 && vote2 != vote3)
 		//		{
 		//		votes.add(vote);
 		//		}
-
+		// need to put the below in a loop 
+		if (vote1.equals(ballot.get(0))){
+			throw new CandidateExistsException(vote1);
+		}
+		
 	}
 
 	public void processVote(String vote1, String vote2, String vote3) 
