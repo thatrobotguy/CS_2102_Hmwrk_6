@@ -104,9 +104,25 @@ class ElectionData implements CandidateSet{ // extends Exception{
 
 	public String findWinnerMostFirstVotes() {
 		// TODO Auto-generated method stub
-		int totalCandidates = this.ballot.size();
+		int totalCandidates = this.ballot.size(), i = 0;
 		
+		for (i = 0; ; i++)
+		{
+			
+		}
 		return null;
+	}
+	private int countFirstVotes(String name)
+	{
+		int result = 0;
+		for (String runTotal: this.votes)
+		{
+			if (runTotal.equals(name))
+			{
+				result++;
+			}
+		}
+		return result;
 	}
 
 	public String findWinnerMostPoints() {
