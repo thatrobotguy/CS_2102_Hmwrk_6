@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 class ElectionData implements CandidateSet{ // extends Exception{
 	private LinkedList<String> ballot = new LinkedList<String>(); // A list of candidates
-	private LinkedList<String> votes = new LinkedList<String>();
+	private LinkedList<String> votes = new LinkedList<String>();  // The votes people cast
 	// A list of candidates from the voters
 	public Scanner keyboard = new Scanner(System.in); // Keyboard input
 
@@ -20,12 +20,20 @@ class ElectionData implements CandidateSet{ // extends Exception{
 		}
 	}
 
-	public void screen() {
-		this.printBallot();
-		System.out.println("Who do you want to vote for?");
-		String candidate = keyboard.next();
-		addCandidate(candidate);
-		System.out.println("You voted for " + candidate);
+	public void screen()
+	{
+		try
+		{
+			this.printBallot();
+			System.out.println("Who do you want to vote for?");
+			String candidate = keyboard.next();
+			addCandidate(candidate1, candidate2, candidate3);
+			System.out.println("You voted for " + candidate);
+		}
+		catch (CandidateNotFoundException e)
+		{
+
+		}
 	}
 
 	public int countVotes(String forcand) {
@@ -37,7 +45,8 @@ class ElectionData implements CandidateSet{ // extends Exception{
 		return numvotes;
 	}
 
-	public void addCandidate(String vote) throws CandidateNotFoundException
+	public void addCandidate(String vote1, String vote2, String vote3) 
+			throws CandidateNotFoundException
 	{
 		for (Customer cust: customers)
 		{
