@@ -36,6 +36,7 @@ class ElectionData implements CandidateSet{ // extends Exception{
 		}
 	}
 
+	/*
 	public int countVotes(String forcand) {
 		int numvotes = 0;
 		for (String s : votes) {
@@ -44,7 +45,8 @@ class ElectionData implements CandidateSet{ // extends Exception{
 		}
 		return numvotes;
 	}
-
+	*/
+	
 	public void addCandidate(String vote1, String vote2, String vote3) 
 			throws UnknownCandidateException, DuplicateVotesException,
 			DuplicateVotesException
@@ -98,5 +100,18 @@ class ElectionData implements CandidateSet{ // extends Exception{
 			}
 		}
 		return false;
+	}
+
+	public String findWinnerMostFirstVotes() {
+		// TODO Auto-generated method stub
+		int totalCandidates = this.ballot.size();
+		
+		return null;
+	}
+
+	public String findWinnerMostPoints() {
+		// TODO Auto-generated method stub
+		int totalCandidates = this.ballot.size();
+		return null;
 	}
 }
