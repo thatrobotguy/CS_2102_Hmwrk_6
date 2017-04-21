@@ -1,16 +1,32 @@
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 class ElectionData { // extends Exception{implements CandidateSet
+	/*Part 1.1 Edit the starter code to store the number of first, second, and third choice 
+	 * votes for each candidate on a ballot. Before reading on, think about what 
+	 * data structure(s) you might use for this information. After you've come up 
+	 * with your proposal on paper, feel free to look at (and use, or not) 
+	 * our suggested data structure. ( three HashMaps: one for the number of 
+	 * first-choice votes per candidate, one for the number of second-choice 
+	 * votes per candidate, and one for the number of third-choice votes per 
+	 * candidate.
+	 * 
+	 */
 	private LinkedList<String> ballot = new LinkedList<String>(); // A list of candidates
 	private LinkedList<String> votes = new LinkedList<String>();  // The votes people cast
 	// A list of candidates from the voters
+	// new votes structure
+	private HashMap<String, Integer> firstchoice = new HashMap<String, Integer>();
 	public Scanner keyboard = new Scanner(System.in); // Keyboard input
 
 	ElectionData() {
 		this.ballot.add("Gompei");
 		this.ballot.add("Husky");
 		this.ballot.add("Andrew");
+		firstchoice.put("Gompei", 0);
+		firstchoice.put("Husky", 0);
+		firstchoice.put("Andrew", 0);
 	}
 
 	public void printBallot() {
@@ -36,7 +52,7 @@ class ElectionData { // extends Exception{implements CandidateSet
 		//}
 	}
 
-	
+	// we need to eventually get rid of this according to hw instructions
 	public int countVotes(String forcand) {
 		int numvotes = 0;
 		for (String s : votes) {
