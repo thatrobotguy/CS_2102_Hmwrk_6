@@ -125,16 +125,20 @@ class ElectionData { // extends Exception{implements CandidateSet
 		i = 0;
 		
 		// This fills with a dummy variable so that this function compiles.
-		String winner = this.ballot.get(0);
+		String winner = this.ballot.get(i);
 		
 		// Filler variable for total first votes for each candidate.
-		int totalVotes = 0;
+		int totalVotes = 0, comp = countFirstVotes(this.ballot.get(i));
 
-		for (i = 0; i < totalCandidates; i++)
+		for (i = 1; i < totalCandidates; i++) // since comp starts with the first candidate anyways, start with 1.
 		{
 			// counterList.set(i) = countFirstVotes(this.ballot.get(i));
 			totalVotes = countFirstVotes(this.ballot.get(i)); // Get the total first votes for that candidate.
 			
+			if (totalVotes >= comp) // Do we need to handle ties?
+			{
+				winner = this.ballot.get(i);
+			}
 			// Mary do you see what I am trying to do? 
 			//#######################################
 			// i think i got it
