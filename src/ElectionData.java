@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-class ElectionData { // gvgvgvgvfextends Exception{implements CandidateSet
+class ElectionData { //extends Exception{implements CandidateSet
 	/*Part 1.1 Edit the starter code to store the number of first, second, and third choice 
 	 * votes for each candidate on a ballot. Before reading on, think about what 
 	 * data structure(s) you might use for this information. After you've come up 
