@@ -48,7 +48,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 	{
 		try
 		{
-			
+
 			System.out.println("Enter a Candidate Name");
 			String add = keyboard.nextLine();
 			addCandidate(add); // Need to write addCandidate().
@@ -89,9 +89,9 @@ class ElectionData { //extends Exception{implements CandidateSet
 			throws CandidateExistsException
 	{
 		for (String b : this.ballot){
-		if (candidate.equals(b)){
-			throw new CandidateExistsException(candidate);
-		}
+			if (candidate.equals(b)){
+				throw new CandidateExistsException(candidate);
+			}
 		}
 		this.ballot.add(candidate);
 		firstchoice.put(candidate, 0);
@@ -147,24 +147,36 @@ class ElectionData { //extends Exception{implements CandidateSet
 	}
 
 	public String findWinnerMostFirstVotes() {
-		// TODO Auto-generated method stub
-		int totalCandidates = this.ballot.size(), i = 0;
-		LinkedList<Integer> counterList = new LinkedList<Integer>();
+		//		int totalCandidates = this.ballot.size(), i = 0;
+		//		LinkedList<Integer> counterList = new LinkedList<Integer>();
 		// This list holds an integer for each candidate.
 		// Increment the respective counter each time they get a vote.
 
 		// Fill the list with integers of 0 in for each candidate.
+		long max = firstchoice.get(this.ballot.get(0));
+		String holder = this.ballot.get(0);
+		for (String a : this.ballot)
+		{
+			if (firstchoice.get(a) >= max)
+			{
+				max = firstchoice.get(a);
+				holder = a;
+			}
+		}
+		return holder;
+		/*
 		for (i = 0; i < totalCandidates; i++)
 		{
+
 			counterList.add(0); // Each candidate gets 0 votes.
 		}
-		
+
 		// reset counter
 		i = 0;
-		
+
 		// This fills with a dummy variable so that this function compiles.
 		String winner = this.ballot.get(i);
-		
+
 		// Filler variable for total first votes for each candidate.
 		int totalVotes = 0, comp = countFirstVotes(this.ballot.get(i));
 
@@ -172,7 +184,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 		{
 			// counterList.set(i) = countFirstVotes(this.ballot.get(i));
 			totalVotes = countFirstVotes(this.ballot.get(i)); // Get the total first votes for that candidate.
-			
+
 			if (totalVotes >= comp) // Do we need to handle ties?
 			{
 				winner = this.ballot.get(i);
@@ -183,6 +195,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 			counterList.set(i, totalVotes);// = totalVotes; // This is supposed to set the element in the list to totalVotes.
 		}
 		return winner;
+		 */
 	}
 
 	// This function helps the findWinnerMostFirstVotes() function counting first votes.
