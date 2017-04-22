@@ -11,7 +11,6 @@ class ElectionData { //extends Exception{implements CandidateSet
 	 * first-choice votes per candidate, one for the number of second-choice 
 	 * votes per candidate, and one for the number of third-choice votes per 
 	 * candidate.
-	 * 
 	 */
 	private LinkedList<String> ballot = new LinkedList<String>(); // A list of candidates
 	private LinkedList<String> votes = new LinkedList<String>();  // The votes people cast
@@ -23,7 +22,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 	public Scanner keyboard = new Scanner(System.in); // Keyboard input
 
 	ElectionData() {
-		this.ballot.add("Gompei");
+		this.ballot.add("Gompei"); // TODO Do we need to have things in the constructor? Post this to the forum.
 		this.ballot.add("Husky");
 		this.ballot.add("Andrew");
 		firstchoice.put("Gompei", 0);
@@ -48,8 +47,8 @@ class ElectionData { //extends Exception{implements CandidateSet
 	{
 		try
 		{
-
-			System.out.println("Enter a Candidate Name");
+			System.out.println("Enter a Candidate Name"); // TODO Do we need to choose whether we want to add candidate or 
+			// vote for already added candidates? Forum??
 			String add = keyboard.nextLine();
 			addCandidate(add); // Need to write addCandidate().
 			this.printBallot();
@@ -147,77 +146,35 @@ class ElectionData { //extends Exception{implements CandidateSet
 	}
 
 	public String findWinnerMostFirstVotes() {
-		//		int totalCandidates = this.ballot.size(), i = 0;
-		//		LinkedList<Integer> counterList = new LinkedList<Integer>();
-		// This list holds an integer for each candidate.
-		// Increment the respective counter each time they get a vote.
-
-		// Fill the list with integers of 0 in for each candidate.
 		long max = firstchoice.get(this.ballot.get(0));
 		String holder = this.ballot.get(0);
+
 		for (String a : this.ballot)
 		{
-			if (firstchoice.get(a) >= max)
+			if (firstchoice.get(a) >= max) // TODO Do we have ties???? Forum?? Read assignment.
 			{
 				max = firstchoice.get(a);
 				holder = a;
 			}
 		}
 		return holder;
-		/*
-		for (i = 0; i < totalCandidates; i++)
-		{
-
-			counterList.add(0); // Each candidate gets 0 votes.
-		}
-
-		// reset counter
-		i = 0;
-
-		// This fills with a dummy variable so that this function compiles.
-		String winner = this.ballot.get(i);
-
-		// Filler variable for total first votes for each candidate.
-		int totalVotes = 0, comp = countFirstVotes(this.ballot.get(i));
-
-		for (i = 1; i < totalCandidates; i++) // since comp starts with the first candidate anyways, start with 1.
-		{
-			// counterList.set(i) = countFirstVotes(this.ballot.get(i));
-			totalVotes = countFirstVotes(this.ballot.get(i)); // Get the total first votes for that candidate.
-
-			if (totalVotes >= comp) // Do we need to handle ties?
-			{
-				winner = this.ballot.get(i);
-			}
-			// Mary do you see what I am trying to do? 
-			//#######################################
-			// i think i got it
-			counterList.set(i, totalVotes);// = totalVotes; // This is supposed to set the element in the list to totalVotes.
-		}
-		return winner;
-		 */
-	}
-
-	// This function helps the findWinnerMostFirstVotes() function counting first votes.
-	private int countFirstVotes(String name) // , int ballotnum) // ballotnum is the number that associates the candidate 
-	// in the list of candidates
-	{
-		int result = 0, i = 0;
-		for (i = 0; i < this.votes.size(); i = i + 3)
-			// (String runTotal: this.votes)
-			// (i = ballotnum; i < this.votes.size(); i = i + 3)
-		{
-			if (this.ballot.get(i).equals(name))
-			{
-				result++;
-			}
-		}
-		return result;
 	}
 
 	public String findWinnerMostPoints() {
-		// TODO Auto-generated method stub
-		int totalCandidates = this.ballot.size();
-		return null;
+		long max = firstchoice.get(this.ballot.get(0)) + 
+				secondchoice.get(this.ballot.get(0)) + 
+				thirdchoice.get(this.ballot.get(0));
+		String holder = this.ballot.get(0);
+		for (String aCandidate : this.ballot)
+		{
+			if (firstchoice.get(aCandidate) + secondchoice.get(aCandidate) + thirdchoice.get(aCandidate) >= max)
+			{
+				max = firstchoice.get(aCandidate) + secondchoice.get(aCandidate) + thirdchoice.get(aCandidate);
+				holder = aCandidate;
+			}
+		}
+		return holder;
 	}
+
+	
 }
