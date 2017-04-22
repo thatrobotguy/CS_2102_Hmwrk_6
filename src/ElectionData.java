@@ -18,6 +18,8 @@ class ElectionData { // extends Exception{implements CandidateSet
 	// A list of candidates from the voters
 	// new votes structure
 	private HashMap<String, Integer> firstchoice = new HashMap<String, Integer>();
+	private HashMap<String, Integer> secondchoice = new HashMap<String, Integer>();
+	private HashMap<String, Integer> thirdchoice = new HashMap<String, Integer>();
 	public Scanner keyboard = new Scanner(System.in); // Keyboard input
 
 	ElectionData() {
@@ -27,6 +29,12 @@ class ElectionData { // extends Exception{implements CandidateSet
 		firstchoice.put("Gompei", 0);
 		firstchoice.put("Husky", 0);
 		firstchoice.put("Andrew", 0);
+		secondchoice.put("Gompei", 0);
+		secondchoice.put("Husky", 0);
+		secondchoice.put("Andrew", 0);
+		thirdchoice.put("Gompei", 0);
+		thirdchoice.put("Husky", 0);
+		thirdchoice.put("Andrew", 0);
 	}
 
 	public void printBallot() {
@@ -51,8 +59,8 @@ class ElectionData { // extends Exception{implements CandidateSet
 
 		//}
 	}
-
-	// we need to eventually get rid of this according to hw instructions
+	/*
+	 we need to eventually get rid of this according to hw instructions
 	public int countVotes(String forcand) {
 		int numvotes = 0;
 		for (String s : votes) {
@@ -60,7 +68,7 @@ class ElectionData { // extends Exception{implements CandidateSet
 				numvotes = numvotes+1;
 		}
 		return numvotes;
-	}
+	}*/
 
 
 	public void addCandidate(String candidate) 
@@ -79,11 +87,13 @@ class ElectionData { // extends Exception{implements CandidateSet
 		}
 		}
 		this.ballot.add(candidate);
+		firstchoice.put(candidate, 0);
+		secondchoice.put(candidate, 0);
+		thirdchoice.put(candidate, 0);
 	}
 
 	public void processVote(String vote1, String vote2, String vote3) 
-			throws UnknownCandidateException, DuplicateVotesException,
-			DuplicateVotesException
+			throws UnknownCandidateException, DuplicateVotesException
 	{
 		if (!candidateExist(vote1)) // This is the error if the votes don't match any candidates.
 		{
@@ -108,6 +118,11 @@ class ElectionData { // extends Exception{implements CandidateSet
 		else if (vote2.equals(vote3))
 		{
 			throw new DuplicateVotesException(vote3);
+		}
+		else {
+			firstchoice.put(vote1, firstchoice.get(vote1)+1);
+			secondchoice.put(vote2, secondchoice.get(vote2)+1);
+			thirdchoice.put(vote3, thirdchoice.get(vote3)+1);
 		}
 
 	}
