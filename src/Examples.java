@@ -1,3 +1,7 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 
 public class Examples {
 
@@ -8,14 +12,14 @@ public class Examples {
 		ElectionData ED = new ElectionData();
 
 		// put candidates on the ballot
-
+		try {
 		ED.addCandidate("gompei");
 		ED.addCandidate("husky");
 		ED.addCandidate("ziggy");
 
 		// cast votes
 
-		try {
+		
 
 			ED.processVote("gompei", "husky", "ziggy");
 			ED.processVote("gompei", "ziggy", "husky");
@@ -30,7 +34,7 @@ public class Examples {
 	// now run a test on a specific election
 	@Test
 	public void testMostFirstWinner () {
-		assertEquals ("gompei", Setup1().findWinnerMostFirstVotes());
+		assertEquals("gompei", Setup1().findWinnerMostFirstVotes());
 	}
 
 }

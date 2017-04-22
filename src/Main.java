@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 
 public class Main {
 
@@ -8,10 +10,15 @@ public class Main {
 		Exception e3 = new DuplicateVotesException("gompei"); // If a person tries to vote twice for the same person. 
 
 		ElectionData ED = new ElectionData(); // Add the 3 candidates to the Election
-
+		Scanner keyboard = new Scanner(System.in); // Keyboard input
 		try {
-			ED.addCandidate("a"); // Need to write addCandidate().
-		} catch (CandidateExistsException e) {}
+			System.out.println("Enter a Candidate Name");
+			String add = keyboard.nextLine();
+			ED.addCandidate(add); // Need to write addCandidate().
+		} catch (CandidateExistsException e) {
+			System.out.println("Candidate Exists Try Again");
+			//
+		}
 
 		try {
 			ED.processVote("a","b","c");

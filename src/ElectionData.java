@@ -46,18 +46,32 @@ class ElectionData { //extends Exception{implements CandidateSet
 
 	public void screen()
 	{
-	//	try
-	//	{
+		try
+		{
+			
+			System.out.println("Enter a Candidate Name");
+			String add = keyboard.nextLine();
+			addCandidate(add); // Need to write addCandidate().
 			this.printBallot();
 			System.out.println("Who do you want to vote for?");
-			String candidate = keyboard.next();
-			//addCandidate(candidate1, candidate2, candidate3);
-			System.out.println("You voted for " + candidate);
-		//}
-		//catch (CandidateExistsException	 e)
-		//{
-
-		//}
+			String candidate1 = keyboard.next();
+			String candidate2 = keyboard.next();
+			String candidate3 = keyboard.next();
+			processVote(candidate1, candidate2, candidate3);
+		}
+		catch (CandidateExistsException	 e)
+		{
+			System.out.println("Candidate Exists Try Again");
+			screen();
+		}
+		catch (UnknownCandidateException e){
+			System.out.println("Candidate Unknown Try Again");
+			screen();
+		}
+		catch (DuplicateVotesException e){
+			System.out.println("No Duplicate Votes Try Again");
+			screen();
+		}
 	}
 	/*
 	 we need to eventually get rid of this according to hw instructions
@@ -72,15 +86,8 @@ class ElectionData { //extends Exception{implements CandidateSet
 
 
 	public void addCandidate(String candidate) 
-			throws CandidateExistsException //UnknownCandidateException, DuplicateVotesException,
-			//DuplicateVotesException
+			throws CandidateExistsException
 	{
-		// This code below is if there weren't any errors
-		//		if (vote1 != vote2 && vote1 != vote3 && vote2 != vote3)
-		//		{
-		//		votes.add(vote);
-		//		}
-		// this should add a candidate that is not already in the list
 		for (String b : this.ballot){
 		if (candidate.equals(b)){
 			throw new CandidateExistsException(candidate);
