@@ -17,10 +17,7 @@ public class Examples {
 		ED.addCandidate("husky");
 		ED.addCandidate("ziggy");
 
-		// cast votes
-
-		
-
+		// cast votes	
 			ED.processVote("gompei", "husky", "ziggy");
 			ED.processVote("gompei", "ziggy", "husky");
 			ED.processVote("husky", "gompei", "ziggy");
