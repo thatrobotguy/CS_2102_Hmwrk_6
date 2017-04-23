@@ -72,17 +72,6 @@ class ElectionData { //extends Exception{implements CandidateSet
 			screen();
 		}
 	}
-	/*
-	 we need to eventually get rid of this according to hw instructions
-	public int countVotes(String forcand) {
-		int numvotes = 0;
-		for (String s : votes) {
-			if (s.equals(forcand))
-				numvotes = numvotes+1;
-		}
-		return numvotes;
-	}*/
-
 
 	public void addCandidate(String candidate) 
 			throws CandidateExistsException
@@ -161,15 +150,18 @@ class ElectionData { //extends Exception{implements CandidateSet
 	}
 
 	public String findWinnerMostPoints() {
-		long max = firstchoice.get(this.ballot.get(0)) + 
-				secondchoice.get(this.ballot.get(0)) + 
+		// three points for each first-place vote they received, 
+		//two points for each second-place vote they received, 
+		//and one point for each third-place vote they received.
+		long max = firstchoice.get(this.ballot.get(0))*3 + 
+				secondchoice.get(this.ballot.get(0))*2 + 
 				thirdchoice.get(this.ballot.get(0));
 		String holder = this.ballot.get(0);
 		for (String aCandidate : this.ballot)
 		{
-			if (firstchoice.get(aCandidate) + secondchoice.get(aCandidate) + thirdchoice.get(aCandidate) >= max)
+			if (firstchoice.get(aCandidate)*3 + secondchoice.get(aCandidate)*2 + thirdchoice.get(aCandidate) >= max)
 			{
-				max = firstchoice.get(aCandidate) + secondchoice.get(aCandidate) + thirdchoice.get(aCandidate);
+				max = firstchoice.get(aCandidate)*3 + secondchoice.get(aCandidate)*2 + thirdchoice.get(aCandidate);
 				holder = aCandidate;
 			}
 		}
