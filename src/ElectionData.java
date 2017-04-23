@@ -14,7 +14,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 	 * 
 	 */
 	private LinkedList<String> ballot = new LinkedList<String>(); // A list of candidates
-	private LinkedList<String> votes = new LinkedList<String>();  // The votes people cast
+	//private LinkedList<String> votes = new LinkedList<String>();  // The votes people cast
 	// A list of candidates from the voters
 	// new votes structure
 	private HashMap<String, Integer> firstchoice = new HashMap<String, Integer>();
