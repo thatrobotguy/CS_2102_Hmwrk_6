@@ -25,7 +25,7 @@ public class Examples {
 		} catch (Exception e) {}
 
 		return(ED);
-
+// TODO How do we test to add inputs from keyboard?
 	}
 
 	// now run a test on a specific election
