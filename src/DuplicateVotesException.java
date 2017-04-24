@@ -1,6 +1,6 @@
 
 public class DuplicateVotesException extends Exception {
-
+	//Mary Hatfalvi & Andrew Schueler
 	private String duplicateName1;
 	//String duplicateName2;
 	

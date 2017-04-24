@@ -2,15 +2,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
+//Mary Hatfalvi & Andrew Schueler
 public class Examples {
 
 	// method to set up a ballot and cast votes
-
 	ElectionData Setup1 () {
 
 		ElectionData ED = new ElectionData();
-
 		// put candidates on the ballot
 		try {
 			ED.addCandidate("gompei");
@@ -26,7 +24,9 @@ public class Examples {
 
 		return(ED);
 		// TODO How do we test to add inputs from keyboard?
+		// dont think that needs to be done
 	}
+	// another method to set up and use for testing
 	ElectionData Setup2 (){
 		ElectionData ED = new ElectionData();
 		// put candidates on the ballot
@@ -43,8 +43,7 @@ public class Examples {
 
 		} catch (Exception e) {}
 		return (ED);
-	}
-	
+	}	
 	// now run a test on a specific election
 	@Test
 	public void testMostFirstWinner () {

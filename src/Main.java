@@ -1,8 +1,7 @@
 import java.util.Scanner;
 
-
+//Mary Hatfalvi & Andrew Schueler
 public class Main {
-
 	//public static void main(String[] args) {
 	Main(){
 		Exception e1 = new UnknownCandidateException("gompei"); // If the candidate doesn't exist
