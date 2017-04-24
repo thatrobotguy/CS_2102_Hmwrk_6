@@ -1,8 +1,8 @@
 
 public class UnknownCandidateException extends Exception{
-	String unfoundName;
+	private String unfoundName;
 	
-	UnknownCandidateException(String name)
+	public UnknownCandidateException(String name)
 	{
 		this.unfoundName = name;
 	}

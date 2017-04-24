@@ -21,8 +21,8 @@ class ElectionData { //extends Exception{implements CandidateSet
 	private HashMap<String, Integer> thirdchoice = new HashMap<String, Integer>();
 	public Scanner keyboard = new Scanner(System.in); // Keyboard input
 
-	ElectionData() {
-		this.ballot.add("Gompei"); // TODO Do we need to have things in the constructor? Post this to the forum.
+	public ElectionData() {
+		/*this.ballot.add("Gompei"); // TODO Do we need to have things in the constructor? Post this to the forum.
 		this.ballot.add("Husky");
 		this.ballot.add("Andrew");
 		firstchoice.put("Gompei", 0);
@@ -33,7 +33,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 		secondchoice.put("Andrew", 0);
 		thirdchoice.put("Gompei", 0);
 		thirdchoice.put("Husky", 0);
-		thirdchoice.put("Andrew", 0);
+		thirdchoice.put("Andrew", 0);*/
 	}
 
 	public void printBallot() {
@@ -75,21 +75,21 @@ class ElectionData { //extends Exception{implements CandidateSet
 
 	public void addCandidate(String candidate) 
 			throws CandidateExistsException
-	{
+			{
 		for (String b : this.ballot){
 			if (candidate.equals(b)){
 				throw new CandidateExistsException(candidate);
 			}
 		}
 		this.ballot.add(candidate);
-		firstchoice.put(candidate, 0);
-		secondchoice.put(candidate, 0);
-		thirdchoice.put(candidate, 0);
-	}
+		this.firstchoice.put(candidate, 0);
+		this.secondchoice.put(candidate, 0);
+		this.thirdchoice.put(candidate, 0);
+			}
 
 	public void processVote(String vote1, String vote2, String vote3) 
 			throws UnknownCandidateException, DuplicateVotesException
-	{
+			{
 		if (!candidateExist(vote1)) // This is the error if the votes don't match any candidates.
 		{
 			throw new UnknownCandidateException(vote1);
@@ -115,12 +115,12 @@ class ElectionData { //extends Exception{implements CandidateSet
 			throw new DuplicateVotesException(vote3);
 		}
 		else {
-			firstchoice.put(vote1, firstchoice.get(vote1)+1);
-			secondchoice.put(vote2, secondchoice.get(vote2)+1);
-			thirdchoice.put(vote3, thirdchoice.get(vote3)+1);
+			this.firstchoice.put(vote1, this.firstchoice.get(vote1)+1);
+			this.secondchoice.put(vote2, this.secondchoice.get(vote2)+1);
+			this.thirdchoice.put(vote3, this.thirdchoice.get(vote3)+1);
 		}
 
-	}
+			}
 
 	private boolean candidateExist(String name)
 	{
@@ -135,17 +135,18 @@ class ElectionData { //extends Exception{implements CandidateSet
 	}
 
 	public String findWinnerMostFirstVotes() {
-		long max = firstchoice.get(this.ballot.get(0));
+		long max = this.firstchoice.get(this.ballot.get(0));
 		String holder = this.ballot.get(0);
 
 		for (String a : this.ballot)
 		{
-			if (firstchoice.get(a) >= max) // TODO Do we have ties???? Forum?? Read assignment.
+			if (this.firstchoice.get(a) >= max) // TODO Do we have ties???? Forum?? Read assignment.
 			{
-				max = firstchoice.get(a);
+				max = this.firstchoice.get(a);
 				holder = a;
 			}
 		}
+
 		return holder;
 	}
 
@@ -153,20 +154,20 @@ class ElectionData { //extends Exception{implements CandidateSet
 		// three points for each first-place vote they received, 
 		//two points for each second-place vote they received, 
 		//and one point for each third-place vote they received.
-		long max = firstchoice.get(this.ballot.get(0))*3 + 
-				secondchoice.get(this.ballot.get(0))*2 + 
-				thirdchoice.get(this.ballot.get(0));
+		long max = this.firstchoice.get(this.ballot.get(0))*3 + 
+				this.secondchoice.get(this.ballot.get(0))*2 + 
+				this.thirdchoice.get(this.ballot.get(0));
 		String holder = this.ballot.get(0);
 		for (String aCandidate : this.ballot)
 		{
-			if (firstchoice.get(aCandidate)*3 + secondchoice.get(aCandidate)*2 + thirdchoice.get(aCandidate) >= max)
+			if (this.firstchoice.get(aCandidate)*3 + this.secondchoice.get(aCandidate)*2 + this.thirdchoice.get(aCandidate) >= max)
 			{
-				max = firstchoice.get(aCandidate)*3 + secondchoice.get(aCandidate)*2 + thirdchoice.get(aCandidate);
+				max = this.firstchoice.get(aCandidate)*3 + this.secondchoice.get(aCandidate)*2 + this.thirdchoice.get(aCandidate);
 				holder = aCandidate;
 			}
 		}
 		return holder;
 	}
 
-	
+
 }

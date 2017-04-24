@@ -1,9 +1,9 @@
 
 public class CandidateExistsException extends Exception {
 	
-	String existsName;
+	private String existsName;
 	
-	CandidateExistsException(String name)
+	public CandidateExistsException(String name)
 	{
 		this.existsName = name;
 	}
