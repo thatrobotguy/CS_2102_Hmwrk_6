@@ -156,12 +156,12 @@ class ElectionData { //extends Exception{implements CandidateSet
 
 	public String findWinnerMostPoints() {
 		// three points for each first-place vote they received, 
-		//two points for each second-place vote they received, 
-		//and one point for each third-place vote they received.
+		// two points for each second-place vote they received, 
+		// and one point for each third-place vote they received.
 		// get the first max points value
 		long max = this.firstchoice.get(this.ballot.get(0))*3 + 
-				this.secondchoice.get(this.ballot.get(0))*2 + 
-				this.thirdchoice.get(this.ballot.get(0));
+				    this.secondchoice.get(this.ballot.get(0))*2 + 
+				     this.thirdchoice.get(this.ballot.get(0));
 		// define winner 
 		String winner = this.ballot.get(0);
 		for (String aCandidate : this.ballot)
@@ -174,6 +174,4 @@ class ElectionData { //extends Exception{implements CandidateSet
 		} // return the winner
 		return winner;
 	}
-
-
 }
