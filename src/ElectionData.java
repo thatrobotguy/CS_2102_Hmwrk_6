@@ -122,8 +122,10 @@ class ElectionData { //extends Exception{implements CandidateSet
 
 			}
 
+	// checks if a candidate exists returns true if there is such a candidate
+	// else return false
 	private boolean candidateExist(String name)
-	{
+	{	// go through each candidate name in ballot
 		for (String cand1 : this.ballot)
 		{
 			if (cand1.equals(name))
@@ -134,6 +136,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 		return false;
 	}
 
+	// find the winner with the most first votes
 	public String findWinnerMostFirstVotes() {
 		long max = this.firstchoice.get(this.ballot.get(0));
 		String holder = this.ballot.get(0);
@@ -154,19 +157,21 @@ class ElectionData { //extends Exception{implements CandidateSet
 		// three points for each first-place vote they received, 
 		//two points for each second-place vote they received, 
 		//and one point for each third-place vote they received.
+		// get the first max points value
 		long max = this.firstchoice.get(this.ballot.get(0))*3 + 
 				this.secondchoice.get(this.ballot.get(0))*2 + 
 				this.thirdchoice.get(this.ballot.get(0));
-		String holder = this.ballot.get(0);
+		// define winner 
+		String winner = this.ballot.get(0);
 		for (String aCandidate : this.ballot)
-		{
+		{	// for each candidate in ballot check if the max points is higher
 			if (this.firstchoice.get(aCandidate)*3 + this.secondchoice.get(aCandidate)*2 + this.thirdchoice.get(aCandidate) >= max)
-			{
+			{	// if not the new string becomes the max points and winner
 				max = this.firstchoice.get(aCandidate)*3 + this.secondchoice.get(aCandidate)*2 + this.thirdchoice.get(aCandidate);
-				holder = aCandidate;
+				winner = aCandidate;
 			}
-		}
-		return holder;
+		} // return the winner
+		return winner;
 	}
 
 

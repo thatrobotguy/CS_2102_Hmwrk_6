@@ -44,6 +44,7 @@ public class Examples {
 		} catch (Exception e) {}
 		return (ED);
 	}
+	
 	// now run a test on a specific election
 	@Test
 	public void testMostFirstWinner () {
