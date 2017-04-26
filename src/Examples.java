@@ -31,7 +31,6 @@ public class Examples {
 			ED.processVote("Andrew", "Dan", "Mary");
 			ED.processVote("Mary", "Dan", "Andrew");
 			ED.processVote("Mary", "Dan", "Jane");
-
 		} catch (Exception e) {}
 		return (ED);
 	}
@@ -50,7 +49,6 @@ public class Examples {
 			ED.processVote("Mary", "Dan", "Andrew");
 			ED.processVote("Mary", "Dan", "Jane");
 			ED.processVote("SwagMan", "SwagMan", "SwagMan");
-
 		} catch (Exception e) {
 			return new ElectionData();	
 		}
@@ -62,8 +60,6 @@ public class Examples {
 		// put candidates on the ballot
 		try {
 			ED.addCandidate("Jane");
-			//			ED.addCandidate("___");
-			//			ED.addCandidate("A___");
 			ED.processVote("Jane", "Dan", "Andrew");
 		} catch (Exception e) {}
 		return (ED);
@@ -75,7 +71,6 @@ public class Examples {
 			ED.addCandidate("Bob");
 			ED.addCandidate("Dan");
 			ED.addCandidate("Andrew");
-			// ED.addCandidate("___");
 			ED.addCandidate("Mary");
 			// cast votes	
 			ED.processVote("Bob", "Mary", "Andrew");
@@ -115,13 +110,8 @@ public class Examples {
 	public void testMostPointsFirstWinnerwith1_2 () { 
 		assertEquals("Jane", Setup4().findWinnerMostFirstVotes());
 	}
-//
-//	@Test
-//	public void testSomething () { 
-//		assertEquals("Bob", Setup5().findWinnerMostFirstVotes());
-//	}
 
-	@Test //DuplicateVotesException.class)
+	@Test //test is throws unknown before duplicate
 	public void testThrowsUnkownBeforeDuplicate () {
 		boolean unknown = false;
 		try {
@@ -133,7 +123,7 @@ public class Examples {
 		assertTrue(unknown);
 	}
 
-	@Test //DuplicateVotesException.class)
+	@Test //test if throws unknown exception
 	public void testThrowsUnknownOnly () {
 		boolean unknown = false;
 		try {
@@ -144,19 +134,19 @@ public class Examples {
 		}
 		assertTrue(unknown);
 	}
-	
-	@Test //DuplicateVotesException.class)
+
+	@Test //checks if duplicate throws exception
 	public void testThrowsDuplicateOnly () {
 		boolean unknown = false;
 		try {
 			Setup5().processVote("Mary", "Mary", "Andrew");
 		} catch (DuplicateVotesException e) {
 			unknown = true;	
-		} catch (UnknownCandidateException e) {		}
+		} catch (UnknownCandidateException e) {}
 		assertTrue(unknown);
 	}
-	
-	@Test //DuplicateVotesException.class)
+
+	@Test //tests if add candidate throws exception
 	public void testThrowsDuplicateCadidate () {
 		boolean unknown = false;
 		try {
@@ -166,5 +156,4 @@ public class Examples {
 		}
 		assertTrue(unknown);
 	}
-	
 }
