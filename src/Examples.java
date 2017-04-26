@@ -2,10 +2,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 //Mary Hatfalvi & Andrew Schueler
 public class Examples {
-
 	// method to set up a ballot and cast votes
 	ElectionData Setup1 () {
-
 		ElectionData ED = new ElectionData();
 		// put candidates on the ballot
 		try {
@@ -16,12 +14,8 @@ public class Examples {
 			ED.processVote("gompei", "husky", "ziggy");
 			ED.processVote("gompei", "ziggy", "husky");
 			ED.processVote("husky", "gompei", "ziggy");
-
 		} catch (Exception e) {}
-
 		return(ED);
-		// TODO How do we test to add inputs from keyboard?
-		// dont think that needs to be done
 	}
 	// another method to set up and use for testing
 	ElectionData Setup2 (){
@@ -68,27 +62,25 @@ public class Examples {
 		// put candidates on the ballot
 		try {
 			ED.addCandidate("Jane");
-			ED.addCandidate("___");
-			ED.addCandidate("A____");
+			//			ED.addCandidate("___");
+			//			ED.addCandidate("A___");
 			ED.processVote("Jane", "Dan", "Andrew");
-		} catch (Exception e) {
-			//return new ElectionData();	
-		}
+		} catch (Exception e) {}
 		return (ED);
 	}	
 
 	ElectionData Setup5 () {
 		ElectionData ED = new ElectionData();
-		// put candidates on the ballot
 		try {
-			ED.addCandidate("Jane");
+			ED.addCandidate("Bob");
 			ED.addCandidate("Dan");
-			ED.addCandidate("Andrew");		
+			ED.addCandidate("Andrew");
+			// ED.addCandidate("___");
+			ED.addCandidate("Mary");
 			// cast votes	
-			ED.processVote("Jane", "Dan", "Andrew");
-			ED.processVote("Andrew", "Dan", "Mary");
-			ED.processVote("Jane", "Mary", "Dan");
-
+			ED.processVote("Bob", "Mary", "Andrew");
+			ED.processVote("Andrew", "Dan", "Andrew");
+			ED.processVote("Bob", "Mary", "Dan");
 		} catch (Exception e) {}
 		return (ED);
 	}
@@ -115,27 +107,64 @@ public class Examples {
 	}
 	// now run a test on a single candidate election
 	@Test
-	public void testMostPointsFirstWinnerSwag1 () { // TODO
-		
-		
+	public void testMostPointsFirstWinnerwith1 () { 
 		assertEquals("Jane", Setup4().findWinnerMostPoints());
 	}
 	// now run a test on a single candidate election
 	@Test
-	public void testMostPointsFirstWinnerSwag2 () { // TODO
+	public void testMostPointsFirstWinnerwith1_2 () { 
 		assertEquals("Jane", Setup4().findWinnerMostFirstVotes());
 	}
+//
+//	@Test
+//	public void testSomething () { 
+//		assertEquals("Bob", Setup5().findWinnerMostFirstVotes());
+//	}
 
+	@Test //DuplicateVotesException.class)
+	public void testThrowsUnkownBeforeDuplicate () {
+		boolean unknown = false;
+		try {
+			Setup5().processVote("Mary", "Derpface", "Mary");
+		} catch (DuplicateVotesException e) {
+		} catch (UnknownCandidateException e) {
+			unknown = true;
+		}
+		assertTrue(unknown);
+	}
 
-	//	@Test(expected=DuplicateVotesException.class)
-	//	public void testMostPointsFirstWinner3 () {
-	//		Setup3();
-	//	}
-
-	//	@Test
-	//	public void testMostPointsWinner1 () { // Setup3
-	//		assertTrue(new ElectionData() == Setup3());
-	//	}
-
-
+	@Test //DuplicateVotesException.class)
+	public void testThrowsUnknownOnly () {
+		boolean unknown = false;
+		try {
+			Setup5().processVote("Mary", "Derpface", "Andrew");
+		} catch (DuplicateVotesException e) {
+		} catch (UnknownCandidateException e) {
+			unknown = true;	
+		}
+		assertTrue(unknown);
+	}
+	
+	@Test //DuplicateVotesException.class)
+	public void testThrowsDuplicateOnly () {
+		boolean unknown = false;
+		try {
+			Setup5().processVote("Mary", "Mary", "Andrew");
+		} catch (DuplicateVotesException e) {
+			unknown = true;	
+		} catch (UnknownCandidateException e) {		}
+		assertTrue(unknown);
+	}
+	
+	@Test //DuplicateVotesException.class)
+	public void testThrowsDuplicateCadidate () {
+		boolean unknown = false;
+		try {
+			Setup5().addCandidate("Mary");
+		} catch (CandidateExistsException e) {
+			unknown = true;	
+		}
+		assertTrue(unknown);
+	}
+	
 }
