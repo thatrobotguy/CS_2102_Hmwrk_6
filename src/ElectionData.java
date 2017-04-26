@@ -1,20 +1,9 @@
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
-
 //Mary Hatfalvi & Andrew Schueler
 class ElectionData { //extends Exception{implements CandidateSet
-	/*Part 1.1 Edit the starter code to store the number of first, second, and third choice 
-	 * votes for each candidate on a ballot. Before reading on, think about what 
-	 * data structure(s) you might use for this information. After you've come up 
-	 * with your proposal on paper, feel free to look at (and use, or not) 
-	 * our suggested data structure. ( three HashMaps: one for the number of 
-	 * first-choice votes per candidate, one for the number of second-choice 
-	 * votes per candidate, and one for the number of third-choice votes per 
-	 * candidate.
-	 */
 	private LinkedList<String> ballot = new LinkedList<String>(); // A list of candidates
-	//private LinkedList<String> votes = new LinkedList<String>();  // The votes people cast
 	// A list of candidates from the voters
 	// new votes structure
 	private HashMap<String, Integer> firstchoice = new HashMap<String, Integer>();
@@ -22,20 +11,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 	private HashMap<String, Integer> thirdchoice = new HashMap<String, Integer>();
 	public Scanner keyboard = new Scanner(System.in); // Keyboard input
 
-	public ElectionData() {
-		/*this.ballot.add("Gompei"); // TODO Do we need to have things in the constructor? Post this to the forum.
-		this.ballot.add("Husky");
-		this.ballot.add("Andrew");
-		firstchoice.put("Gompei", 0);
-		firstchoice.put("Husky", 0);
-		firstchoice.put("Andrew", 0);
-		secondchoice.put("Gompei", 0);
-		secondchoice.put("Husky", 0);
-		secondchoice.put("Andrew", 0);
-		thirdchoice.put("Gompei", 0);
-		thirdchoice.put("Husky", 0);
-		thirdchoice.put("Andrew", 0);*/
-	}
+	public ElectionData() {	}
 
 	public void printBallot() {
 		System.out.println("The candidates are ");
@@ -154,11 +130,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 		return holder;
 	}
 
-	public String findWinnerMostPoints() {// throws UnknownCandidateException{
-		// three points for each first-place vote they received, 
-		// two points for each second-place vote they received, 
-		// and one point for each third-place vote they received.
-		// get the first max points value
+	public String findWinnerMostPoints() {
 		long max = this.firstchoice.get(this.ballot.get(0))*3 + 
 				this.secondchoice.get(this.ballot.get(0))*2 + 
 				this.thirdchoice.get(this.ballot.get(0));
