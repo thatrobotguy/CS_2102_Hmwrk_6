@@ -24,8 +24,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 	{
 		try
 		{
-			System.out.println("Enter a Candidate Name"); // TODO Do we need to choose whether we want to add candidate or 
-			// vote for already added candidates? Forum??
+			System.out.println("Enter a Candidate Name");  
 			String add = keyboard.nextLine();
 			addCandidate(add); // Need to write addCandidate().
 			this.printBallot();
