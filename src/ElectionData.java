@@ -76,7 +76,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 
 	public void addCandidate(String candidate) 
 			throws CandidateExistsException
-			{
+	{
 		for (String b : this.ballot){
 			if (candidate.equals(b)){
 				throw new CandidateExistsException(candidate);
@@ -86,11 +86,11 @@ class ElectionData { //extends Exception{implements CandidateSet
 		this.firstchoice.put(candidate, 0);
 		this.secondchoice.put(candidate, 0);
 		this.thirdchoice.put(candidate, 0);
-			}
+	}
 
 	public void processVote(String vote1, String vote2, String vote3) 
 			throws UnknownCandidateException, DuplicateVotesException
-			{
+	{
 		if (!candidateExist(vote1)) // This is the error if the votes don't match any candidates.
 		{
 			throw new UnknownCandidateException(vote1);
@@ -121,7 +121,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 			this.thirdchoice.put(vote3, this.thirdchoice.get(vote3)+1);
 		}
 
-			}
+	}
 
 	// checks if a candidate exists returns true if there is such a candidate
 	// else return false
@@ -144,7 +144,7 @@ class ElectionData { //extends Exception{implements CandidateSet
 
 		for (String a : this.ballot)
 		{
-			if (this.firstchoice.get(a) >= max) // TODO Do we have ties???? Forum?? Read assignment.
+			if (this.firstchoice.get(a) > max) // TODO Do we have ties???? Forum?? Read assignment.
 			{
 				max = this.firstchoice.get(a);
 				holder = a;
@@ -154,19 +154,19 @@ class ElectionData { //extends Exception{implements CandidateSet
 		return holder;
 	}
 
-	public String findWinnerMostPoints() {
+	public String findWinnerMostPoints() {// throws UnknownCandidateException{
 		// three points for each first-place vote they received, 
 		// two points for each second-place vote they received, 
 		// and one point for each third-place vote they received.
 		// get the first max points value
 		long max = this.firstchoice.get(this.ballot.get(0))*3 + 
-				    this.secondchoice.get(this.ballot.get(0))*2 + 
-				     this.thirdchoice.get(this.ballot.get(0));
+				this.secondchoice.get(this.ballot.get(0))*2 + 
+				this.thirdchoice.get(this.ballot.get(0));
 		// define winner 
 		String winner = this.ballot.get(0);
 		for (String aCandidate : this.ballot)
 		{	// for each candidate in ballot check if the max points is higher
-			if (this.firstchoice.get(aCandidate)*3 + this.secondchoice.get(aCandidate)*2 + this.thirdchoice.get(aCandidate) >= max)
+			if (this.firstchoice.get(aCandidate)*3 + this.secondchoice.get(aCandidate)*2 + this.thirdchoice.get(aCandidate) > max)
 			{	// if not the new string becomes the max points and winner
 				max = this.firstchoice.get(aCandidate)*3 + this.secondchoice.get(aCandidate)*2 + this.thirdchoice.get(aCandidate);
 				winner = aCandidate;

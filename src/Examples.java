@@ -68,9 +68,11 @@ public class Examples {
 		// put candidates on the ballot
 		try {
 			ED.addCandidate("Jane");
-			// ED.processVote("Jane", "Dan", "Andrew");
+			ED.addCandidate("___");
+			ED.addCandidate("A____");
+			ED.processVote("Jane", "Dan", "Andrew");
 		} catch (Exception e) {
-			return new ElectionData();	
+			//return new ElectionData();	
 		}
 		return (ED);
 	}	
@@ -113,12 +115,14 @@ public class Examples {
 	}
 	// now run a test on a single candidate election
 	@Test
-	public void testMostPointsFirstWinnerSwag1 () {
+	public void testMostPointsFirstWinnerSwag1 () { // TODO
+		
+		
 		assertEquals("Jane", Setup4().findWinnerMostPoints());
 	}
 	// now run a test on a single candidate election
 	@Test
-	public void testMostPointsFirstWinnerSwag2 () {
+	public void testMostPointsFirstWinnerSwag2 () { // TODO
 		assertEquals("Jane", Setup4().findWinnerMostFirstVotes());
 	}
 
